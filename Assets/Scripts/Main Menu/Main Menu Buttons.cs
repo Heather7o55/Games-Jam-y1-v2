@@ -7,7 +7,7 @@ public class MainMenuButtons : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("MainGame");
+        SceneManager.LoadScene("Main Game");
         Debug.Log("Game Is Starting!");
     }
 
