@@ -11,8 +11,11 @@ public class CustomerScript : MonoBehaviour
     private float timerActive;
     public Image timerImage;
     public int pos;
+    public Sprite[] sprites;
+    public SpriteRenderer body;
     void Start()
     {
+        body.sprite = sprites[Random.Range(0, sprites.Length)];
         timerMax = Random.Range(CustomerSpawningScript.difficulty.low, CustomerSpawningScript.difficulty.high);
     }
     void Update()
