@@ -11,6 +11,12 @@ public class MainMenuButtons : MonoBehaviour
         Debug.Log("Game Is Starting!");
     }
 
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+        Debug.Log("Returning To Menu!");
+    }
+
     public void Setting()
     {
         
