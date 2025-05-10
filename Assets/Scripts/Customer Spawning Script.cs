@@ -4,15 +4,48 @@ using UnityEngine;
 
 public class CustomerSpawningScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public struct Difficulty
+    {
+        // "low" and "high" defined the minimum and maximum amount of time in seconds that the player has to fulfill a customer request 
+        public int low;
+        public int high;
+        public int maxRequests;
+    }
+    public static Difficulty difficulty;
+    // This declaration is the global difficulty for the game
+    // Update is called once per frame
+    private bool timerActive = false;
+    public GameObject customerGObj;
+    public static int activeCustomers = 0;
+    public Transform[] spawnPoints;
     void Start()
     {
-        
+        difficulty.low = 5;
+        difficulty.high = 10;
+        difficulty.maxRequests = 6;
     }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        if(timerActive || activeCustomers >= difficulty.maxRequests) return;
+        else 
+            StartCoroutine(SpawnCustomer(GenerateTimer()));
+    }
+    public void SpawnCustomer()
+    {
+        Debug.Log("spawned customer");
+        Instantiate(customerGObj, spawnPoints[Random.Range(0,spawnPoints.Length)]);
+        activeCustomers++;
+    }
+    private float GenerateTimer()
+    {
+        return Random.Range(difficulty.low ,difficulty.high);
+    }
+    private IEnumerator SpawnCustomer(float timer)
+    {
+        timerActive = true;
+        yield return new WaitForSeconds(timer);
+        SpawnCustomer();
+        timerActive = false;
     }
 }
+
