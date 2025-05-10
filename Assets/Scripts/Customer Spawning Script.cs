@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CustomerSpawningScript : MonoBehaviour
@@ -18,14 +19,17 @@ public class CustomerSpawningScript : MonoBehaviour
     public GameObject customerGObj;
     public static int activeCustomers = 0;
     public Transform[] spawnPoints;
+    public TMP_Text text;
     void Start()
     {
         difficulty.low = 5;
         difficulty.high = 10;
         difficulty.maxRequests = 6;
     }
+    
     void Update()
     {
+        text.text = $"Score: {Score.currentScore}";
         if(timerActive || activeCustomers >= difficulty.maxRequests) return;
         else 
             StartCoroutine(SpawnCustomer(GenerateTimer()));

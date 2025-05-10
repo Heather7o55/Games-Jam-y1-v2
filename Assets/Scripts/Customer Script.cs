@@ -28,6 +28,7 @@ public class CustomerScript : MonoBehaviour
     {
         if(collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude == 0f)
         {
+            Score.AddScore(50);
             CustomerSpawningScript.activeCustomers--;
             Destroy(collision.gameObject);
             Destroy(gameObject);
