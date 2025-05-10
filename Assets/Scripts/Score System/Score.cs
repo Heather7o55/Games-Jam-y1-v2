@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Score : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class Score : MonoBehaviour
 
     public static void TakeLives(int amount)
     {
-        currentLives += amount;
+        currentLives -= amount;
         Debug.Log("Player Has " + currentLives + " Left");
     }
 
@@ -31,6 +32,9 @@ public class Score : MonoBehaviour
     {
         Debug.Log("Score Reset From " + currentScore + " To 0");
         currentScore = 0;
-        
+    }
+    public static void GameOver()
+    {
+        SceneManager.LoadScene("Game Over");
     }
 }

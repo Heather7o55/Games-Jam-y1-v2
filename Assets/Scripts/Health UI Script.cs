@@ -13,5 +13,6 @@ public class HealthUIScript : MonoBehaviour
     {
         if(Score.currentLives < 3)
         healthUIs[Score.currentLives].sprite = lostHealth;
+        if(Score.currentLives <= 0) Score.GameOver();
     }
 }

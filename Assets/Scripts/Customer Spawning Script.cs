@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CustomerSpawningScript : MonoBehaviour
@@ -18,6 +20,7 @@ public class CustomerSpawningScript : MonoBehaviour
     private bool timerActive = false;
     public GameObject customerGObj;
     public static int activeCustomers = 0;
+    public static List<CustomerScript> customers = new List<CustomerScript>();
     public Transform[] spawnPoints;
     public TMP_Text text;
     void Start()
@@ -36,8 +39,15 @@ public class CustomerSpawningScript : MonoBehaviour
     }
     public void SpawnCustomer()
     {
+        int tmp;
+        while(true)
+        {
+            tmp = Random.Range(0,spawnPoints.Length);
+            if(!customers.Any(CustomerScript => CustomerScript.pos == tmp)) break;
+        }
         Debug.Log("spawned customer");
-        Instantiate(customerGObj, spawnPoints[Random.Range(0,spawnPoints.Length)]);
+        GameObject customerTmp = Instantiate(customerGObj, spawnPoints[tmp]);
+        customerTmp.GetComponent<CustomerScript>().pos = tmp;
         activeCustomers++;
     }
     private float GenerateTimer()
