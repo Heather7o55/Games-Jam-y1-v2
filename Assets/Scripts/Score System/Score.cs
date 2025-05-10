@@ -15,7 +15,7 @@ public class Score : MonoBehaviour
 
     public void ResetScore()
     {
-        Debug.Log("Score Reset From " + currentScore " To 0");
+        Debug.Log("Score Reset From " + currentScore + " To 0");
         currentScore = 0;
         
     }
